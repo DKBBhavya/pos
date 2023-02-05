@@ -75,6 +75,7 @@
             // 
             // btn_Exit
             // 
+            this.btn_Exit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Exit.Location = new System.Drawing.Point(17, 248);
             this.btn_Exit.Name = "btn_Exit";
@@ -97,8 +98,10 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btn_Login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_Exit;
             this.ClientSize = new System.Drawing.Size(324, 297);
             this.ControlBox = false;
             this.Controls.Add(this.btn_Login);

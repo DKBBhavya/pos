@@ -29,7 +29,11 @@ namespace POS
 
             if (user == "admin" && pass == "pass")
             {
-                MessageBox.Show("Success");
+                txtPass.Text = "";
+                txtUser.Text = "";
+                txtUser.Focus();
+                frmMain f = new frmMain();
+                f.ShowDialog();
             }
             else
             {
