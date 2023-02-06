@@ -21,5 +21,15 @@ namespace POS
         {
             this.Close();
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            panelInvoice.Visible = false;
+        }
+
+        private void btn_New_Click(object sender, EventArgs e)
+        {
+            panelInvoice.Visible = true;
+        }
     }
 }
