@@ -24,12 +24,25 @@ namespace POS
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            panelInvoice.Visible = false;
+            
         }
 
         private void btn_New_Click(object sender, EventArgs e)
         {
-            panelInvoice.Visible = true;
+            frmNew f = new frmNew();
+            f.TopLevel = false;
+            panelMain.Controls.Add(f);
+            f.BringToFront();
+            f.Show();
+        }
+
+        private void btn_Item_Click(object sender, EventArgs e)
+        {
+            frmItem f = new frmItem();
+            f.TopLevel = false;
+            panelMain.Controls.Add(f);
+            f.BringToFront();
+            f.Show();
         }
     }
 }

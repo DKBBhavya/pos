@@ -12,21 +12,19 @@ namespace POS
     internal class DB
     {
         private static SQLiteConnection con;
+        private static SQLiteCommand cmd;
         private static SQLiteDataAdapter adap;
 
         private static void OpenCon()
         {
             try
             {
-                if (con == null || con.State != System.Data.ConnectionState.Open)
-                {
-                    con = new SQLiteConnection("Data Source=database.db;");
-                    con.Open();
-                }
+                con = new SQLiteConnection("Data Source=database.db;");
+                con.Open();
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Error1", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -61,6 +59,22 @@ namespace POS
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            }
+        }
+
+        public static void InsertData(string query)
+        {
+            try
+            {
+                OpenCon();
+                cmd = con.CreateCommand();
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+                CloseCon();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
