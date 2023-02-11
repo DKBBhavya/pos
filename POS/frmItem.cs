@@ -97,7 +97,6 @@ namespace POS
                 LoadData();
                 txtLookup.Focus();
             }
-
         }
     }
 }

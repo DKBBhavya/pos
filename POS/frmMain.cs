@@ -19,12 +19,15 @@ namespace POS
 
         private void btn_Logout_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+            this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+            this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            this.Location = Screen.PrimaryScreen.WorkingArea.Location;
         }
 
         private void btn_New_Click(object sender, EventArgs e)
