@@ -206,6 +206,18 @@ namespace POS
         {
             frmPrint fp = new frmPrint();
 
+            DataTable d = new DataTable();
+            DB.FillData("Select max(id) from invoice;", d);
+
+            int id = 0;
+
+            foreach (DataRow dr in d.Rows)
+            {
+                id = int.Parse(dr[0].ToString());
+            }
+
+            fp.id = id;
+
             fp.ShowDialog();
         }
     }

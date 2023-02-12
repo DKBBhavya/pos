@@ -203,7 +203,18 @@ namespace POS
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            
+            int i = 0;
+
+            if (txtInvoice.Text == "" || !int.TryParse(txtInvoice.Text, out i))
+            {
+                MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            frmPrint fp = new frmPrint();
+            fp.id = i;
+
+            fp.ShowDialog();
         }
 
         private void btnGet_Click(object sender, EventArgs e)

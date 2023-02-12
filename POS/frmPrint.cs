@@ -16,6 +16,8 @@ namespace POS
         DataTable dt;
         int tot = 0;
 
+        public int id;
+
         public frmPrint()
         {
             InitializeComponent();
@@ -47,21 +49,9 @@ namespace POS
 
         private void frmPrint_Load(object sender, EventArgs e)
         {
-            DataTable d = new DataTable();
-            DB.FillData("Select max(id) from invoice;", d);
-
-            int id = 0;
-
-            foreach (DataRow dr in d.Rows)
-            {
-                id = int.Parse(dr[0].ToString());
-            }
-
             lbInvoice.Text = id.ToString();
-
+            DataTable d = new DataTable();
             dt.Clear();
-
-            d = new DataTable();
             DB.FillData("Select * from sale where invoice = " + id + ";", d);
 
             int l = 0, p = 0, q = 0;
@@ -113,6 +103,16 @@ namespace POS
         {
             PrintScreen();
             printPreviewDialog1.ShowDialog();
+            this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
