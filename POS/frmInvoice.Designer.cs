@@ -1,6 +1,6 @@
 ﻿namespace POS
 {
-    partial class frmNew
+    partial class frmInvoice
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,11 @@
             this.Modify = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnGet = new System.Windows.Forms.Button();
+            this.txtInvoice = new System.Windows.Forms.TextBox();
             this.txtDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnClearall = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -157,12 +161,46 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.btnDelete);
+            this.panel5.Controls.Add(this.btnGet);
+            this.panel5.Controls.Add(this.txtInvoice);
             this.panel5.Controls.Add(this.txtDate);
+            this.panel5.Controls.Add(this.label5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(708, 100);
             this.panel5.TabIndex = 4;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(271, 34);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(123, 32);
+            this.btnDelete.TabIndex = 17;
+            this.btnDelete.Text = "DELETE";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnGet
+            // 
+            this.btnGet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGet.Location = new System.Drawing.Point(194, 34);
+            this.btnGet.Name = "btnGet";
+            this.btnGet.Size = new System.Drawing.Size(71, 32);
+            this.btnGet.TabIndex = 15;
+            this.btnGet.Text = "GET";
+            this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
+            // 
+            // txtInvoice
+            // 
+            this.txtInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoice.Location = new System.Drawing.Point(8, 35);
+            this.txtInvoice.Name = "txtInvoice";
+            this.txtInvoice.Size = new System.Drawing.Size(180, 30);
+            this.txtInvoice.TabIndex = 16;
             // 
             // txtDate
             // 
@@ -171,6 +209,16 @@
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(200, 22);
             this.txtDate.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 25);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Invoice ID";
             // 
             // panel4
             // 
@@ -344,7 +392,7 @@
             this.lbSNo.TabIndex = 0;
             this.lbSNo.Visible = false;
             // 
-            // frmNew
+            // frmInvoice
             // 
             this.AcceptButton = this.btnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -356,12 +404,13 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmNew";
+            this.Name = "frmInvoice";
             this.Text = "frmNew";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmNew_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgNew)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -400,5 +449,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker txtDate;
         private System.Windows.Forms.Button btnClearall;
+        private System.Windows.Forms.Button btnGet;
+        private System.Windows.Forms.TextBox txtInvoice;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

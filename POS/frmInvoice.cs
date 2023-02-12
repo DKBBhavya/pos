@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace POS
 {
-    public partial class frmNew : Form
+    public partial class frmInvoice : Form
     {
         DataTable dt;
         int tot = 0;
 
-        public frmNew()
+        public frmInvoice()
         {
             InitializeComponent();
             dt = new DataTable();
@@ -175,17 +175,16 @@ namespace POS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DB.InsertData("Insert into invoice (total) values (" + tot + ");");
-
-            DataTable d = new DataTable();
-            DB.FillData("Select max(id) from invoice;", d);
-
             int i = 0;
 
-            foreach (DataRow dr in d.Rows)
+            if (txtInvoice.Text == "" || !int.TryParse(txtInvoice.Text, out i))
             {
-                i = int.Parse(dr[0].ToString());
+                MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            btnDelete.PerformClick();
+            DB.InsertData("Insert into invoice (id, total) values (" + i + ", " + tot + ");");
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -204,9 +203,59 @@ namespace POS
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            frmPrint fp = new frmPrint();
+            
+        }
 
-            fp.ShowDialog();
+        private void btnGet_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+
+            if (txtInvoice.Text == "" || !int.TryParse(txtInvoice.Text, out id))
+            {
+                MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dt.Clear();
+
+            DataTable d = new DataTable();
+            DB.FillData("Select * from sale where invoice = " + id + ";", d);
+
+            int l = 0, p = 0, q = 0;
+            string de = "";
+
+            foreach (DataRow dr in d.Rows)
+            {
+                DataTable d1 = new DataTable();
+                DB.FillData("Select * from item where id = " + dr[0].ToString() + ";", d1);
+
+                foreach(DataRow dr1 in d1.Rows)
+                {
+                    de = dr1[1].ToString();
+                    l = int.Parse(dr1[2].ToString());
+                }
+
+                p = int.Parse(dr[2].ToString());
+                q = int.Parse(dr[3].ToString());
+
+                dt.Rows.Add(dr[0].ToString(), l, de, p, q, p * q);
+            }
+
+            LoadData();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+
+            if (txtInvoice.Text == "" || !int.TryParse(txtInvoice.Text, out id))
+            {
+                MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DB.InsertData("Delete from invoice where id = " + id + ";");
+            DB.InsertData("Delete from sale where invoice = " + id + ";");
         }
     }
 }

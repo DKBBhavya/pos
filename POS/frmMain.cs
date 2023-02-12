@@ -32,6 +32,7 @@ namespace POS
 
         private void btn_New_Click(object sender, EventArgs e)
         {
+            panelMain.Controls.Clear();
             frmNew f = new frmNew();
             f.TopLevel = false;
             panelMain.Controls.Add(f);
@@ -41,7 +42,18 @@ namespace POS
 
         private void btn_Item_Click(object sender, EventArgs e)
         {
+            panelMain.Controls.Clear();
             frmItem f = new frmItem();
+            f.TopLevel = false;
+            panelMain.Controls.Add(f);
+            f.BringToFront();
+            f.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panelMain.Controls.Clear();
+            frmInvoice f = new frmInvoice();
             f.TopLevel = false;
             panelMain.Controls.Add(f);
             f.BringToFront();

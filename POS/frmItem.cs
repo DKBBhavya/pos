@@ -53,7 +53,7 @@ namespace POS
                     MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                DB.InsertData("Insert into item (desc, lookup, price) values (" + d + ", " + l + ", " + p + ");");
+                DB.InsertData("Insert into item (desc, lookup, price) values (\"" + d + "\", " + l + ", " + p + ");");
                 btnClear.PerformClick();
                 LoadData();
             }
@@ -65,7 +65,7 @@ namespace POS
                     MessageBox.Show("Invalid or Empty Values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                DB.InsertData("Update item set desc = " + d + ", lookup = " + l + ", price = " + p + " where id = " + i + ";");
+                DB.InsertData("Update item set desc = \"" + d + "\", lookup = " + l + ", price = " + p + " where id = " + i + ";");
                 btnClear.PerformClick();
                 LoadData();
             }
