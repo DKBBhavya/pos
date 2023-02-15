@@ -157,6 +157,7 @@ namespace POS
                     foreach (DataRow dr in d.Rows)
                     {
                         txtPrice.Text = dr[3].ToString();
+                        txtQuantity.Text = "1";
                         txtPrice.Focus();
                     }
                 }
@@ -192,13 +193,15 @@ namespace POS
             }
 
             btnClearall.PerformClick();
+            txtInvoice.Text = i.ToString();
         }
 
         private void btnClearall_Click(object sender, EventArgs e)
         {
-            btnClear.PerformClick();
+            txtInvoice.Text = "";
             dt.Clear();
             LoadData();
+            btnClear.PerformClick();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -215,6 +218,8 @@ namespace POS
             fp.id = i;
 
             fp.ShowDialog();
+
+            btnClearall.PerformClick();
         }
 
         private void btnGet_Click(object sender, EventArgs e)

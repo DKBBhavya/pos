@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +12,9 @@ namespace POS
 {
     public partial class frmPrint : Form
     {
+        public int id, height, cur;
         DataTable dt;
         int tot = 0;
-
-        public int id;
 
         public frmPrint()
         {
@@ -44,14 +42,14 @@ namespace POS
                 i++;
             }
 
-            lbTotal.Text = tot.ToString();
+            //lbTotal.Text = tot.ToString();
         }
 
         private void frmPrint_Load(object sender, EventArgs e)
         {
-            lbInvoice.Text = id.ToString();
-            DataTable d = new DataTable();
             dt.Clear();
+
+            DataTable d = new DataTable();
             DB.FillData("Select * from sale where invoice = " + id + ";", d);
 
             int l = 0, p = 0, q = 0;
@@ -77,43 +75,53 @@ namespace POS
             LoadData();
         }
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        public static extern long BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, int dwRop);
-        private Bitmap memoryImage;
-
-        private void PrintScreen()
+        private void button1_Click(object sender, EventArgs e)
         {
-            Graphics mygraphics = this.CreateGraphics();
-            Size s = this.Size;
-            memoryImage = new Bitmap(s.Width, s.Height, mygraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            IntPtr dc1 = mygraphics.GetHdc();
-            IntPtr dc2 = memoryGraphics.GetHdc();
-            BitBlt(dc2, 0, 0, this.ClientRectangle.Width, this.ClientRectangle.Height, dc1, 0, 0, 13369376);
-            mygraphics.ReleaseHdc(dc1);
-            memoryGraphics.ReleaseHdc(dc2);
+            this.Close();
         }
 
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(memoryImage, 0, 0);
-        }
+        Bitmap bmp;
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            PrintScreen();
-            printPreviewDialog1.ShowDialog();
+            height = dgNew.RowCount * dgNew.RowTemplate.Height + dgNew.ColumnHeadersHeight;
+            cur = 0;
+
+            for (int i = 0; i < dgNew.Rows.Count; i++)
+            {
+                dgNew.Rows[i].Visible = false;
+            }
+            printDocument1.Print();
+
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            bmp = new Bitmap(e.PageBounds.Width, e.PageBounds.Height);
 
-        }
+            int tr = e.PageBounds.Height / (dgNew.RowTemplate.Height);
+            tr--;
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            for (int i = 0; i < tr && cur + i < dgNew.Rows.Count; i++)
+            {
+                dgNew.Rows[cur+i].Visible = true;
+            }
+
+            dgNew.Height = e.PageBounds.Height;
+            dgNew.Width = e.PageBounds.Width;
+
+            dgNew.DrawToBitmap(bmp, new Rectangle(0, 0, e.PageBounds.Width, e.PageBounds.Height));
+
+            for (int i = 0; i < tr && cur + i < dgNew.Rows.Count; i++)
+            {
+                dgNew.Rows[cur+i].Visible = false;
+            }
+
+            e.Graphics.DrawImage(bmp, 0, 0);
+            cur += tr;
+
+            e.HasMorePages = (cur < dgNew.Rows.Count);
         }
     }
 }

@@ -157,6 +157,7 @@ namespace POS
                     foreach (DataRow dr in d.Rows)
                     {
                         txtPrice.Text = dr[3].ToString();
+                        txtQuantity.Text = "1";
                         txtPrice.Focus();
                     }
                 }
@@ -219,6 +220,8 @@ namespace POS
             fp.id = id;
 
             fp.ShowDialog();
+
+            btnClearall.PerformClick();
         }
     }
 }

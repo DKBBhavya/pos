@@ -29,63 +29,45 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrint));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbInvoice = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.dgNew = new System.Windows.Forms.DataGridView();
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lookup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.lbTotal = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNew)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // btnPrint
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lbInvoice);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Location = new System.Drawing.Point(12, 557);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(180, 32);
+            this.btnPrint.TabIndex = 13;
+            this.btnPrint.Text = "PRINT";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // lbInvoice
+            // btnClose
             // 
-            this.lbInvoice.AutoSize = true;
-            this.lbInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInvoice.Location = new System.Drawing.Point(116, 9);
-            this.lbInvoice.Name = "lbInvoice";
-            this.lbInvoice.Size = new System.Drawing.Size(0, 25);
-            this.lbInvoice.TabIndex = 18;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(527, 557);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(180, 32);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel2
+            // printDocument1
             // 
-            this.panel2.Controls.Add(this.dgNew);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 57);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 393);
-            this.panel2.TabIndex = 17;
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // dgNew
             // 
@@ -95,14 +77,13 @@
             this.dgNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgNew.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SNo,
-            this.ID,
+            this.Column1,
             this.Lookup,
             this.Description,
             this.Price,
             this.Quantity,
             this.Total});
-            this.dgNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgNew.Location = new System.Drawing.Point(0, 0);
+            this.dgNew.Location = new System.Drawing.Point(8, 8);
             this.dgNew.Name = "dgNew";
             this.dgNew.RowHeadersVisible = false;
             this.dgNew.RowHeadersWidth = 51;
@@ -110,8 +91,8 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.dgNew.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgNew.RowTemplate.Height = 24;
-            this.dgNew.Size = new System.Drawing.Size(800, 293);
-            this.dgNew.TabIndex = 6;
+            this.dgNew.Size = new System.Drawing.Size(708, 494);
+            this.dgNew.TabIndex = 15;
             // 
             // SNo
             // 
@@ -120,12 +101,11 @@
             this.SNo.Name = "SNo";
             this.SNo.ReadOnly = true;
             // 
-            // ID
+            // Column1
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
             // 
             // Lookup
             // 
@@ -162,126 +142,36 @@
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Controls.Add(this.btnPrint);
-            this.panel3.Controls.Add(this.lbTotal);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 293);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 100);
-            this.panel3.TabIndex = 0;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(17, 56);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(180, 32);
-            this.btnPrint.TabIndex = 13;
-            this.btnPrint.Text = "PRINT";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // lbTotal
-            // 
-            this.lbTotal.AutoSize = true;
-            this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotal.Location = new System.Drawing.Point(85, 3);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(0, 25);
-            this.lbTotal.TabIndex = 15;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 25);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Total: ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 25);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Invoice ID:";
-            // 
-            // printDocument1
-            // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Document = this.printDocument1;
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.ShowIcon = false;
-            this.printPreviewDialog1.UseAntiAlias = true;
-            this.printPreviewDialog1.Visible = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(203, 56);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(180, 32);
-            this.btnClose.TabIndex = 16;
-            this.btnClose.Text = "CLOSE";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // frmPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(719, 601);
+            this.Controls.Add(this.dgNew);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnPrint);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPrint";
+            this.ShowInTaskbar = false;
             this.Text = "frmPrint";
             this.Load += new System.EventHandler(this.frmPrint_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgNew)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnClose;
+        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.DataGridView dgNew;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lbTotal;
-        private System.Windows.Forms.Label lbInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lookup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.Button btnClose;
     }
 }
