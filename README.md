@@ -1,3 +1,3 @@
 # POS
 
-Basic POS application built in C# along with setup file
+Basic Point of Sale (POS) application built in C# along with setup file
